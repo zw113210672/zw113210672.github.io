@@ -1,0 +1,24 @@
+{
+  "totalDays": 1,
+  "totalStocks": 22,
+  "winRate": 100,
+  "maxProfit": 20.0,
+  "latest": [
+    {
+      "date": "2026-07-23",
+      "signal": "扫描",
+      "stocks": [
+        {"code": "000155", "name": "川能动力", "signal": "🎯买入", "price": 9.88, "change": 10.03, "sector": "电力"},
+        {"code": "300444", "name": "杭氧股份", "signal": "🎯买入", "price": 28.50, "change": 20.00, "sector": "电网设备"},
+        {"code": "601179", "name": "中国西电", "signal": "🎯买入", "price": 8.15, "change": 9.99, "sector": "电网设备"},
+        {"code": "000533", "name": "万控智造", "signal": "🎯买入", "price": 16.30, "change": 10.01, "sector": "电网设备"},
+        {"code": "603861", "name": "白云电器", "signal": "🎯买入", "price": 12.50, "change": 10.00, "sector": "电网设备"},
+        {"code": "605117", "name": "德业股份", "signal": "🎯买入", "price": 95.20, "change": 10.00, "sector": "光伏"},
+        {"code": "603843", "name": "正和生态", "signal": "🎯买入", "price": 7.92, "change": 10.00, "sector": "基建"},
+        {"code": "300919", "name": "中伟股份", "signal": "👀持有", "price": 45.60, "change": 7.67, "sector": "锂矿"},
+        {"code": "603596", "name": "伯特利", "signal": "👀持有", "price": 68.30, "change": 6.29, "sector": "其他"},
+        {"code": "600714", "name": "金瑞矿业", "signal": "👀持有", "price": 14.20, "change": 3.81, "sector": "有色金属"}
+      ]
+    }
+  ]
+}

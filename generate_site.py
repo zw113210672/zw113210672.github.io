@@ -16,14 +16,23 @@ HTML_TEMPLATE_FILE = BASE_DIR / "records" / "2026-07-23.html"  # 模板参考
 DATA_FILE = BASE_DIR.parent / "data" / "watchlist_scan_{date}.json"
 
 # ========== 从扫描结果生成记录 ==========
-def load_scan_data(scan_date: str) -> list | None:
+def load_scan_data(scan_date: str) -> list | dict | None:
     """加载指定日期的扫描结果JSON"""
     import glob
-    # 尝试多个可能的路径
+    # 日期格式转换：支持 YYYY-MM-DD 和 YYYYMMDD
+    date_compact = scan_date.replace("-", "")
+    data_dir = BASE_DIR.parent / "data"
+    
+    # 尝试所有可能的路径模式
     possible_paths = [
-        BASE_DIR.parent / "data" / f"watchlist_scan_{scan_date}.json",
-        BASE_DIR.parent / "data" / f"scan_result_{scan_date}.json",
-        BASE_DIR.parent / "data" / f"scan_{scan_date}.json",
+        data_dir / f"watchlist_scan_{scan_date}.json",
+        data_dir / f"scan_result_{scan_date}.json",
+        data_dir / f"scan_{scan_date}.json",
+        data_dir / f"crash_scan_{scan_date}.json",
+        data_dir / f"close_scan_{scan_date}.json",
+        data_dir / f"watchlist_scan_{date_compact}.json",
+        data_dir / f"crash_scan_{date_compact}.json",
+        data_dir / f"close_scan_{date_compact}.json",
     ]
     for p in possible_paths:
         if p.exists():
@@ -34,9 +43,8 @@ def load_scan_data(scan_date: str) -> list | None:
                 pass
     
     # 尝试模糊匹配
-    data_dir = BASE_DIR.parent / "data"
-    pattern = str(data_dir / f"*{scan_date}*.json")
-    files = glob.glob(pattern)
+    pattern = str(data_dir / f"*{date_compact}*.json")
+    files = sorted(glob.glob(pattern))
     if files:
         try:
             with open(files[0], "r", encoding="utf-8") as f:

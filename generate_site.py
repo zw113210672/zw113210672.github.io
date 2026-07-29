@@ -30,9 +30,11 @@ def load_scan_data(scan_date: str) -> list | dict | None:
         data_dir / f"scan_{scan_date}.json",
         data_dir / f"crash_scan_{scan_date}.json",
         data_dir / f"close_scan_{scan_date}.json",
+        data_dir / f"intraday_scan_{scan_date}.json",
         data_dir / f"watchlist_scan_{date_compact}.json",
         data_dir / f"crash_scan_{date_compact}.json",
         data_dir / f"close_scan_{date_compact}.json",
+        data_dir / f"intraday_scan_{date_compact}.json",
     ]
     for p in possible_paths:
         if p.exists():
@@ -61,18 +63,29 @@ def scan_data_to_records(scan_data: dict, scan_date: str) -> list:
     if isinstance(scan_data, list):
         stocks = scan_data
     elif isinstance(scan_data, dict):
+        # 先尝试标准格式
         stocks = scan_data.get("results", scan_data.get("data", scan_data.get("stocks", [])))
+        # 如果标准格式为空，尝试盘中扫描格式（按推荐等级分类）
+        if not stocks:
+            all_stocks = []
+            for key in ["🎯强烈推荐", "✅推荐买入", "👀观察", "🔍关注"]:
+                all_stocks.extend(scan_data.get(key, []))
+            stocks = all_stocks
     else:
         return records
 
     for s in stocks:
         if isinstance(s, dict):
+            # 获取signal：优先用intraday风格的recommendation，其次用标准signal
+            sig = s.get("recommendation", s.get("signal", ""))
+            # 涨幅取change或today_pct
+            chg = float(s.get("change", s.get("today_pct", s.get("涨幅%", 0))))
             records.append({
                 "code": s.get("code", s.get("股票代码", s.get("Code", ""))),
                 "name": s.get("name", s.get("股票名称", s.get("Name", ""))),
-                "signal": "🎯买入" if s.get("signal", "") == "买入" or s.get("涨幅%", 0) >= 9.5 else "👀持有",
+                "signal": sig if sig else ("🎯买入" if chg >= 9.5 else "👀持有"),
                 "price": s.get("price", s.get("现价", s.get("Price", 0))),
-                "change": float(s.get("涨幅%", s.get("change", s.get("Change", 0)))),
+                "change": chg,
                 "sector": s.get("板块", s.get("sector", s.get("Sector", ""))),
             })
     return records

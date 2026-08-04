@@ -1,9 +1,95 @@
 {
-  "totalDays": 2,
+  "totalDays": 3,
   "totalStocks": 354,
   "winRate": 100,
   "maxProfit": 20.0,
   "latest": [
+    {
+      "date": "2026-08-04",
+      "signal": "扫描",
+      "stocks": [
+        {
+          "code": "002540",
+          "name": "亚太科技",
+          "signal": "👀持有",
+          "price": "5.23",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "601179",
+          "name": "中国西电",
+          "signal": "👀持有",
+          "price": "13.91",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "002696",
+          "name": "百洋股份",
+          "signal": "👀持有",
+          "price": "5.43",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "002165",
+          "name": "红 宝 丽",
+          "signal": "👀持有",
+          "price": "6.57",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "600855",
+          "name": "航天长峰",
+          "signal": "👀持有",
+          "price": "12.55",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "000966",
+          "name": "长源电力",
+          "signal": "👀持有",
+          "price": "4.40",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "605169",
+          "name": "洪通燃气",
+          "signal": "👀持有",
+          "price": "10.15",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "603333",
+          "name": "福华尚纬",
+          "signal": "👀持有",
+          "price": "8.47",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "300355",
+          "name": "蒙草生态",
+          "signal": "👀持有",
+          "price": "2.99",
+          "change": 0.0,
+          "sector": ""
+        },
+        {
+          "code": "000912",
+          "name": "泸天化",
+          "signal": "👀持有",
+          "price": "3.68",
+          "change": 0.0,
+          "sector": ""
+        }
+      ]
+    },
     {
       "date": "2026-07-29",
       "signal": "扫描",
